@@ -5,11 +5,11 @@ import {Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Table, Mo
 
 export const AddRemoveBtnBlock = ({onPlusClick, onMinusClick}) => {
     return <div className="col-3">
-        <button className="btn btn-link" onClick={e => {
+        <button className="btn btn-link text-dark" onClick={e => {
             onPlusClick()
         }}><i className="fas fa-plus"/>
         </button>
-        <button className="btn btn-link ml-4" href="#" onClick={e => {
+        <button className="btn btn-link ml-4 text-dark" href="#" onClick={e => {
             onMinusClick()
         }}>
             <i className="fas fa-minus"/>
@@ -18,15 +18,19 @@ export const AddRemoveBtnBlock = ({onPlusClick, onMinusClick}) => {
 };
 
 export const SearchField = ({onChange, value}) => {
-    return <input type="text" placeholder="Search" onChange={onChange} value={value}/>
+    return <div className="col-5 offset-3">
+        <Input type="text" placeholder="Search" onChange={onChange} value={value}/>
+    </div>
 };
 
 export const Wrapper = (props) => (
     <div className="container">
         <Card className="mt-4">
-            <CardHeader className="row">
-                <AddRemoveBtnBlockContainer/>
-                <SearchFieldContainer/>
+            <CardHeader>
+                <div className="row">
+                    <AddRemoveBtnBlockContainer/>
+                    <SearchFieldContainer/>
+                </div>
             </CardHeader>
             {props.children}
         </Card>
@@ -58,7 +62,6 @@ export class AddEventModal extends Component {
     };
 
     handleSubmit = (e) => {
-        // TODO: validate
         this.props.addEvent(this.state.eventName, this.state.eventDate, this.state.eventCity);
         this.clean();
     };
@@ -78,7 +81,7 @@ export class AddEventModal extends Component {
                     </FormGroup>
                     <FormGroup>
                         <Input type="select" name="eventCity" id="idCitySelect" value={this.state.eventCity}
-                                onChange={this.handleInputChange}>
+                               onChange={this.handleInputChange}>
                             <option value="Moscow">Moscow</option>
                             <option value="San Francisco">San Francisco</option>
                             <option value="Atlanta">Atlanta</option>
@@ -87,8 +90,9 @@ export class AddEventModal extends Component {
                             <option value="Singapore">Singapore</option>
                         </Input>
                     </FormGroup>
-                    <Button color="primary" onClick={this.handleSubmit} className="float-right ml-4">Add</Button>
-                    <Button color="secondary" onClick={this.props.onCancelClick} className="float-right">Cancel</Button>
+                    <Button color="info" onClick={this.handleSubmit} className="float-right ml-4">Add</Button>
+                    <Button color="info" onClick={this.props.onCancelClick}
+                            className="float-right">Cancel</Button>
                 </Form>
             </ModalBody>
         </Modal>;
@@ -146,8 +150,8 @@ export const DeleteConfirmModal = ({isOpen, onOK, onCancel}) => {
             Are you sure want to remove this events from list?
         </ModalBody>
         <ModalFooter>
-            <Button color="primary" onClick={onOK} className="float-right ml-4">Remove</Button>
-            <Button color="secondary" onClick={onCancel} className="float-right">Cancel</Button>
+            <Button color="info" onClick={onOK} className="float-right ml-4">Remove</Button>
+            <Button color="info" onClick={onCancel} className="float-right">Cancel</Button>
         </ModalFooter>
     </Modal>
 };

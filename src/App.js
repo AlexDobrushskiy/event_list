@@ -14,8 +14,8 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Navbar color="primary" light className="justify-content-center">
-                    taksa
+        <Navbar light className="justify-content-center bg-info">
+                    <h4 className="text-white">Events</h4>
         </Navbar>
 
         <Wrapper>
